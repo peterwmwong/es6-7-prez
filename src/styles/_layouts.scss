@@ -1,0 +1,41 @@
+@import 'bourbon';
+
+html /deep/ .l-v-center,
+%l-v-center {
+  @include position(absolute, 50% null null null);
+  @include transform(translateY(-50%));
+}
+
+html /deep/ .l-float-r,
+%l-float-r { float: right; }
+
+html /deep/ .l-float-l,
+%l-float-l { float: left;  }
+
+@each $type in padding, margin {
+  @for $i from 1 through 6 {
+    html /deep/ .l-#{$type}-r#{$i},
+    %l-#{$type}-r#{$i} { #{$type}-right: $base-width * $i; }
+
+    html /deep/ .l-#{$type}-l#{$i},
+    %l-#{$type}-l#{$i} { #{$type}-left:  $base-width * $i; }
+
+    html /deep/ .l-#{$type}-h#{$i},
+    %l-#{$type}-h#{$i} {
+      #{$type}-left:  $base-width * $i;
+      #{$type}-right: $base-width * $i;
+    }
+
+    html /deep/ .l-#{$type}-t#{$i},
+    %l-#{$type}-t#{$i} { #{$type}-top:    $baseline * $i; }
+
+    html /deep/ .l-#{$type}-b#{$i},
+    %l-#{$type}-b#{$i} { #{$type}-bottom: $baseline * $i; }
+
+    html /deep/ .l-#{$type}-v#{$i},
+    %l-#{$type}-v#{$i} {
+      #{$type}-top:    $baseline * $i;
+      #{$type}-bottom: $baseline * $i;
+    }
+  }
+}

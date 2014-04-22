@@ -1,0 +1,14 @@
+@import 'bourbon';
+@import 'constants';
+
+:host {
+  display: block;
+}
+
+
+prez-slide {
+  @include position(absolute, 0px 0px 0px 0px);
+  display: none;
+
+  &.s-active { display: block; }
+}

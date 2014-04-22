@@ -1,0 +1,122 @@
++import('./prez-slide.html')
++import('../../bower_components/prism-js/prism-js.html')
+
++polymer-element(attributes='slide')
+
+  prez-slide
+    .prez-slide__content
+      h1.t-bold ES 6 / 7
+      h1 The Fucking Awesome Parts
+
+  prez-slide
+    .prez-slide__content
+      h1.l-padding-b2 Why?
+      ul
+        li Gaining attention
+        li Spec is stabilizing
+        li Browser implementations
+        li Frameworks already using it (Angular, Ember)
+        li.t-bold You can use it now!
+
+  prez-slide
+    .prez-slide__content
+      h1.l-padding-b2 So far so good...
+      ul
+        li Zeitgeist
+        li Doug's Survive the Night
+        li Garçon
+
+  prez-slide
+    .prez-slide__content
+      h1.l-padding-b1 Classes
+      h3 In the prototypical sense...
+
+  prez-slide
+    .prez-slide__content
+      prism-js(language="javascript").
+        class LineItem {}
+
+  prez-slide
+    .prez-slide__content
+      h1 super
+      prism-js(language="javascript").
+        class LineItem extends Model {
+          constructor() {
+            super();
+          }
+        }
+
+
+  prez-slide
+    .prez-slide__content
+      h1 Getter/Setter
+      prism-js(language="javascript").
+        class LineItem extends Model {
+
+          get unitCostCentsView() {
+            return this.unitCostCents;
+          }
+
+          set unitCostCentsView(value) {
+            this.unitCostCents = value;
+            this.clientCostCents =
+              (value == null) ? value * (@rateMargin + 1)
+                              : null;
+          }
+
+        }
+
+
+  prez-slide
+    .prez-slide__content
+      h1 Privates
+      h3 ... ugly, but works.
+      prism-js(language="javascript").
+        var myHelper = Symbol("MyHelper");
+
+        class Campaign extends Model {
+
+          [myHelper]() {}
+
+          doStuff() {
+            this[myHelper]();
+          }
+        }
+
+  prez-slide
+    .prez-slide__content
+      h1 Statics
+      prism-js(language="javascript").
+        class Campaign extends Model {
+          
+        }
+
+
+  prez-slide
+    .prez-slide__content
+      h1.l-padding-b1 Modules
+      h3 Finally, an <code>import</code> statement
+
+  prez-slide
+    .prez-slide__content
+      h1 import / export
+      prism-js(language="javascript").
+        // models/Model.js
+
+        export class Model {}
+
+
+
+        // models/LineItem.js
+
+        var Model from './Model';
+
+        class LineItem extends Model {}
+
+  prez-slide
+    .prez-slide__content
+      h1 import / export
+      prism-js(language="javascript").
+        var Model from './Model';
+
+        class LineItem extends Model {}

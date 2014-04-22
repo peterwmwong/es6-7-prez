@@ -1,0 +1,27 @@
+@import 'bourbon';
+@import 'constants';
+@import 'layouts';
+
+:host {
+  display: block;
+}
+
+.prez-slide {
+  &__content {
+    @extend %l-padding-h2;
+    @extend %l-v-center;
+    width: 100%;
+  }
+}
+
+prism-js {
+  code#codeviewer {
+    display: block;
+    margin-left: -250px;
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: transparent;
+  }
+}

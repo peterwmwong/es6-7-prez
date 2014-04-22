@@ -1,0 +1,32 @@
+// Smoothing
+
+// This mixin overrides default anti-aliasing in Webkit and Gecko, which tends to
+// be too heavy for dark-on-light text. It is on by default. In cases
+// where text will be light-on-dark, please turn this value off.
+@mixin font-smoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+// Truncate text with an ellipsis
+html /deep/ .t-truncate,
+%t-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+html /deep/ .t-bold,
+%t-bold   { font-weight: $font-weight-semibold; }
+
+html /deep/ .t-light,
+%t-light  { font-weight: $font-weight-light;    }
+
+html /deep/ .t-normal,
+%t-normal { font-weight: $font-weight-normal;   }
