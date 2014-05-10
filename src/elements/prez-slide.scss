@@ -4,24 +4,64 @@
 
 :host {
   display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.prez-slide {
-  &__content {
-    @extend %l-padding-h2;
-    @extend %l-v-center;
-    width: 100%;
-  }
+:host(.prez-slide--primary){
+  @include linear-gradient( darken($brand-primary-light, 25%), $brand-primary-light);
 }
 
-prism-js {
-  code#codeviewer {
+:host(.prez-slide--warning){
+  @include linear-gradient( darken($warning, 40%), darken($warning, 25%));
+
+  &:before {
+    @include position(absolute, 0px 0px 0px 0px);
+    content: '';
     display: block;
-    margin-left: -250px;
+    background: red;
   }
+}
 
-  :not(pre) > code[class*="language-"],
-  pre[class*="language-"] {
-    background: transparent;
+
+content::content {
+  .prez-slide {
+    &__content {
+      @extend %l-v-center;
+      padding: 0 0 0 ($gutter * 2);
+    }
+
+    &__code {
+      position: relative;
+      height: 350px;
+
+      &--big {
+        height: 550px;
+      }
+
+      ace-element {
+        left: -14px;
+      }
+
+      ace-element /deep/ .ace_editor {
+        font-size: 2.6rem;
+
+        &,
+        .ace_scroller,
+        .ace_gutter-active-line,
+        .ace_active-line {
+          background-color: transparent;
+        }
+        .ace_gutter {
+          background-color: rgba(0,0,0,0);
+          color: $gray-dark;
+        }
+
+        .ace_comment {
+          color: $gray-dark;
+        }
+      }
+    }
   }
 }

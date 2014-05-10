@@ -1,3 +1,23 @@
+// -----
+// Fonts
+// -----
+
+// Racing Sans One
+@include font-face("Racing Sans One", "../vendor/fonts/racing-sans-one/racing-sans-one-regular", normal, normal);
+
+// Source Sans
+// Our applications's main workhorse.
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600);
+
+// ----------
+// Font Icons
+// ----------
+
+// Flaticons
+// https://flaticons.co/
+@include font-face("Flaticons Stroke", "../vendor/fonts/flaticons-stroke/flaticons-stroke", normal, normal);
+
+
 // Smoothing
 
 // This mixin overrides default anti-aliasing in Webkit and Gecko, which tends to
@@ -14,6 +34,14 @@
   }
 }
 
+
+// Truncate text with an ellipsis
+html /deep/ .t-heading,
+%t-heading {
+  font-family: 'Racing Sans One', cursive;
+}
+
+
 // Truncate text with an ellipsis
 html /deep/ .t-truncate,
 %t-truncate {
@@ -21,6 +49,9 @@ html /deep/ .t-truncate,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+html /deep/ .t-italic,
+%t-italic { font-style: italic; }
 
 html /deep/ .t-bold,
 %t-bold   { font-weight: $font-weight-semibold; }

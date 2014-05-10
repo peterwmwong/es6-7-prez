@@ -12,6 +12,6 @@
     "jasmine": "2.0.0",
     "platform": "Polymer/platform#0.2.3",
     "polymer": "Polymer/polymer#0.2.3",
-    "prism-js": "addyosmani/prism-js#0.0.2"
+    "ace-element": "Polymer/ace-element#0.2.3"
   }
 }
