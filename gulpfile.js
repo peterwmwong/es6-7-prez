@@ -74,7 +74,10 @@ var compileJs = function(){
   return gulp.src(SRC_DIR+'**/*.js')
              .pipe(changed(BUILD_DIR))
              .pipe(plumber())
-             .pipe(traceur({ sourceMap: !IS_PROD, modules: 'amd' }))
+             .pipe(traceur({
+               sourceMap: !IS_PROD,
+               modules: 'instantiate'
+             }))
              .pipe(gulp.dest(BUILD_DIR));
 };
 

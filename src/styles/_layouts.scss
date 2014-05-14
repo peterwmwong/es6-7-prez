@@ -1,5 +1,12 @@
 @import 'bourbon';
 
+@each $dimension in width, height {
+  @each $pct in 25, 50, 75, 100 {
+    html /deep/ .l-#{$dimension}-#{$pct},
+    %l-#{$dimension}-#{$pct} { #{$dimension}: $pct * 1%; }
+  }
+}
+
 html /deep/ .l-v-center,
 %l-v-center {
   @include position(relative, 50% null null null);

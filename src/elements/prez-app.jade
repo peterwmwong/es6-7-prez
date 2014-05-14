@@ -32,33 +32,16 @@
       h1.l-margin-b1.t-heading Arrow Functions
       h3 Less typing
 
+
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4
-        span
-          | (
-        span.t-italic.l-margin-r2
-          | arg1, arg2
-        span
-          | )
-        span => {
-        span ...
-        span }
-
-      h2.l-margin-b4
-        span
-          | (
-        span.t-italic.l-margin-r2
-          | arg1, arg2
-        span
-          | )
-        span =>
-        span.t-italic returnValue
-
-      h2.l-margin-b4
-        span.t-italic.l-margin-r2 arg
-        span =>
-        span.t-italic returnValue
+      .prez-slide__code
+        ace-element(mode="javascript")
+          :verbatim
+            (arg1, arg2)=>{ /*...*/ }
+            (arg1, arg2)=> returnValue;
+            arg=> returnValue;
+          :verbatim
 
   prez-slide
     .prez-slide__content
@@ -70,6 +53,7 @@
             [1,2,3].map(num=>num*2);
 
             //> [2,4,6]
+          :verbatim
 
   prez-slide
     .prez-slide__content
@@ -84,7 +68,7 @@
                 while(b--) result*=a;
                 return result;
               }
-            }
+            };
 
 
   prez-slide
@@ -99,7 +83,8 @@
                .done(function(response){
                  this.parse(response);
                });
-            }
+            };
+          :verbatim
 
   prez-slide
     .prez-slide__content
@@ -112,6 +97,7 @@
               $.ajax({url: '/api/todos.json'})
                .done(response=>this.parse(response));
             }
+          :verbatim
 
   prez-slide.prez-slide--primary
     .prez-slide__content
@@ -124,27 +110,14 @@
         ace-element(mode="javascript")
           :verbatim
             class Thing {
-              constructor() { console.log('hello world') }
+              constructor(){ console.log('hello world') }
             }
             var thingInstance = new Thing();
             // 'hello world'
 
             thingInstance instanceof Thing;
             // > true
-
-  prez-slide.prez-slide--warning
-    .prez-slide__content
-      .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" on-keypress="{{onKeydown}}")
           :verbatim
-            class Thing {
-              constructor() { console.log('hello world') }
-            }
-            var not_a_thing = Thing(); // DANGER!!!
-            // 'hello world'
-
-            not_a_thing instanceof Thing;
-            // > false
 
   prez-slide
     .prez-slide__content
@@ -164,9 +137,9 @@
             }
           :verbatim
 
-  prez-slide.prez-slide--primary
+  prez-slide
     .prez-slide__content
-      h1.t-heading Private Members
+      h2 Private Members
 
   prez-slide
     .prez-slide__content
@@ -176,15 +149,15 @@
           :verbatim
             function Thing(){
               this.doStuff = function(){
-                internalDoStuff();
+                _internalDoStuff();
               };
-              function internalDoStuff(){ /*...*/ }
+              function _internalDoStuff(){ /*...*/ }
             }
           :verbatim
 
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4 ES6: not pretty, but works
+      h2.l-margin-b4 ES6: Not pretty, but works
       .prez-slide__code.prez-slide__code--big
         ace-element(mode="javascript")
           :verbatim
@@ -201,116 +174,217 @@
       .prez-slide__code.prez-slide__code--big
         ace-element(mode="javascript")
           :verbatim
-            var propertyName = "Fred";
+            var propertyName = "Fr";
             var a = {
-              [propertyName]: "Flintstone"
+              [propertyName + "ed"]: "Flintstone"
             };
           :verbatim
 
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4 <b>NOT ES6</b>: You would think...
+      h2.l-margin-b4 Detour: Symbol
       .prez-slide__code.prez-slide__code--big
         ace-element(mode="javascript")
           :verbatim
+            var sym1 = Symbol();
+            var sym2 = Symbol();
+
+            sym1 === sym2;
+            //> false
+
+            sym === sym;
+            //> false
+          :verbatim
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 One more time...
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            var internalDoStuff = Symbol();
             class Thing {
-              doStuff(){ this.internalDoStuff() }
-              private internalDoStuff(){ /*...*/ }
+              doStuff(){ this[internalDoStuff]() }
+              [internalDoStuff](){ /*...*/ }
             }
           :verbatim
 
   prez-slide
     .prez-slide__content
-      h1 Privates
-      h3 ... ugly, but works.
-      prism-js(language="javascript").
-        var myHelper = Symbol("MyHelper");
+      h2 Class Statics
 
-        class Campaign extends Model {
-
-          [myHelper]() {}
-
-          doStuff() {
-            this[myHelper]();
-          }
-        }
 
   prez-slide
     .prez-slide__content
-      h1 Statics
-      prism-js(language="javascript").
-        class Model {
-          static reset() { /* ... */ }
-        }
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            class Thing {
+              static doStuff(){ return 'produce stuff' }
+            }
+
+            Thing.doStuff();
+            // > 'produce stuff'
+          :verbatim
 
 
   prez-slide.prez-slide--primary
     .prez-slide__content
-      h1.l-padding-b1 Modules
-      h3 Finally, an <code>import</code> statement
+      h1.t-heading Modules
+
+  prez-slide
+    .prez-slide__content.prez-slide__content--full-width
+      img.l-width-100(src="/images/price-is-right-winner-gif.gif")
 
   prez-slide
     .prez-slide__content
-      h1 import / export
-      prism-js(language="javascript").
-        // models/Model.js
+      h2.l-margin-b4 Meanwhile in Java...
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            import org.slf4j.Logger;
+          :verbatim
 
-        export class Model {}
-
-        // models/LineItem.js
-
-        var {Model} from './Model';
-
-        class LineItem extends Model {}
 
   prez-slide
     .prez-slide__content
-      h1 import / export (default)
-      prism-js(language="javascript").
-        // models/Model.js
+      h2.l-margin-b4 Meanwhile in Ruby...
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            require 'yaml'
+          :verbatim
 
-        export default class Model {}
 
-        // models/LineItem.js
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 The shit we do...
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            var myStuff = require('./myStuff');
 
-        var Model from './Model';
+            define(['./someOtherStuff'],
+              function(someOtherStuff){/*...*/});
 
-        class LineItem extends Model {}
+            Ext.require('widget.window');
+
+            curl(['yetMoreStuff']).
+              then(function(yetMoreStuff){/*...*/});
+
+            steal('widgets/tabs.js', './style.css',
+              function(Tabs){/*...*/});
+
+            (function(){
+              var script = document.createElement('script');
+              script.src = 'omg-why.js';
+              document.appendChild(script);
+            })();
+          :verbatim
+
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 ES6: Import/Export
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            // models/Model.js
+            export class Model {}
+
+            // models/LineItem.js
+            var {Model} from './Model';
+            class LineItem extends Model {}
+          :verbatim
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 ES6: Import/Export Default
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            // models/Model.js
+            export default class Model {}
+
+            // models/LineItem.js
+            var Model from './Model';
+            class LineItem extends Model {}
+          :verbatim
+
+
 
   prez-slide.prez-slide--primary
     .prez-slide__content
-      h1.l-padding-b1 Promises / Async Functions
-      h3 Sane asynchonicity
+      h1.t-heading Promises /
+      h1.t-heading Async Functions
+      h3.l-margin-t2 Sane asynchonicity
 
   prez-slide
     .prez-slide__content
-      h1 Promise
-      prism-js(language="javascript").
-        var getGreetingPromise = ()=>
-          new Promise(resolve=>
-            setTimeout(resolve.bind(null, 'hello world'), 1000);
-          );
+      h2.l-margin-b4 Promises
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            function fetchGreeting(){
+              new Promise(resolve=>
+                setTimeout(()=>resolve('Hello'), 1000);
+              );
+            }
+            function greet(greetingPromise){
+              greetingPromise.then(msg=>console.log(msg));
+            };
 
-        async function greet(greetingPromise){
-          greetingPromise.then(message=>console.log(message));
-        };
-
-        greet(getGreetingPromise());
+            greet(getGreetingPromise());
+          :verbatim
 
   prez-slide
     .prez-slide__content
-      h1 Async Functions aka "Using Promises like a BOSS"
-      prism-js(language="javascript").
-        var getGreetingPromise = ()=>
-          new Promise(resolve=>
-            setTimeout(resolve.bind(null, 'hello world'), 1000);
-          );
+      h2.l-margin-b4 Async Functions
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            function fetchGreeting(){
+              new Promise(resolve=>
+                setTimeout(()=>resolve('Hello'), 1000);
+              );
+            }
+            async function greet(greetingPromise){
+              console.log(await greetingPromise);
+            };
 
-        async function greet(greetingPromise){
-          console.log(await greetingPromise);
-        };
+            greet(getGreetingPromise());
+          :verbatim
 
-        greet(getGreetingPromise());
+
+  prez-slide.prez-slide--primary
+    .prez-slide__content
+      h1.l-margin-b4.t-heading And much much more...
+      ul
+        li Generators
+        li Map/Set WeakMap/WeakSet
+        li Template Strings
+        li Destructuring
+        li Argument Spread
+        li let/const
+
+  //- prez-slide
+  //-   .prez-slide__content
+  //-     .prez-slide__code.prez-slide__code--bigger
+  //-       ace-element(mode="javascript")
+  //-         :verbatim
+  //-           var createNumberGenerator = function*(){
+  //-             yield 1;
+  //-             yield 2;
+  //-           });
+  //-           var generator = createNumberGenerator();
+  //-
+  //-           generator().next();
+  //-           // > {value: 1,         done: false}
+  //-           generator().next();
+  //-           // > {value: 2,         done: false}
+  //-           generator().next();
+  //-           // > {value: undefined, done: true}
+  //-         :verbatim
 
   prez-slide.prez-slide--primary
     .prez-slide__content
@@ -330,30 +404,9 @@
   prez-slide.prez-slide--primary
     .prez-slide__content
       h1.l-margin-b1.t-heading Spread
-      h3 arguments was a mistake
+      h3 <code>arguments</code> was a mistake
 
   prez-slide.prez-slide--primary
     .prez-slide__content
-    h1.l-margin-b1.t-heading let / const
-    h3 var hoisting was a mistake
-
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-padding-b1 Generators
-
-  prez-slide
-    .prez-slide__content
-      h1 Generators
-      prism-js(language="javascript").
-        var numberGenerator = *(){
-          yield 1;
-          yield 2;
-          yield 3;
-        });
-
-        numberGenerator();
-        // 1
-        numberGenerator();
-        // 2
-        numberGenerator();
-        // 3
+      h1.l-margin-b1.t-heading let / const
+      h3 variable hoisting was a mistake

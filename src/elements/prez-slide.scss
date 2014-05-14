@@ -30,6 +30,10 @@ content::content {
     &__content {
       @extend %l-v-center;
       padding: 0 0 0 ($gutter * 2);
+
+      &--full-width {
+        padding: 0;
+      }
     }
 
     &__code {
@@ -38,6 +42,10 @@ content::content {
 
       &--big {
         height: 550px;
+      }
+
+      &--bigger {
+        height: 715px;
       }
 
       ace-element {
