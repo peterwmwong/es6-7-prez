@@ -14,9 +14,8 @@
 /build/
 /spec_build/
 /.sass-cache/
-/node_modules/
-/bower_components/
+/node_modules/*
 
-!/node_modules/traceur/bin/traceur-runtime.js
-!/node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js
-!/node_modules/systemjs/lib/extension-register.js
+!/node_modules/traceur/
+!/node_modules/es6-module-loader/
+!/node_modules/systemjs/
