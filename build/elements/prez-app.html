@@ -1,0 +1,408 @@
+
+<link rel="import" href="./prez-slide.html"/>
+<link rel="import" href="../../bower_components/ace-element/ace-element.html"/>
+<polymer-element attributes="slide" name="prez-app">
+  <template>
+    <link rel="stylesheet" href="prez-app.css"/>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">ECMAScript 6 / 7</h1>
+        <h3>The Fucking Awesome Parts</h3>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Why now?</h2>
+        <ul>
+          <li>Gaining attention</li>
+          <li>Stablizing spec</li>
+          <li>Implementations out in the wild</li>
+          <li>Already being used <i>(Angular 2.0 and Ember 1.6)</i></li>
+          <li class="t-bold">You can use it now!</li>
+        </ul>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">So far so good...</h2>
+        <ul>
+          <li>Zeitgeist</li>
+          <li>Doug's Survive the Night</li>
+          <li>Garçon</li>
+          <li class="t-bold">This presentation</li>
+        </ul>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">Arrow Functions</h1>
+        <h3>Less typing</h3>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code">
+          <ace-element mode="javascript">(arg1, arg2)=>{ /*...*/ }
+(arg1, arg2)=> returnValue;
+arg=> returnValue;
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code">
+          <ace-element mode="javascript">[1,2,3].map(function(num){return num*2});
+
+[1,2,3].map(num=>num*2);
+
+//> [2,4,6]
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var operations = {
+  identity: o=>o,
+  add: (a,b)=>a+b,
+  exp: (a,b)=>{
+    var result = a;
+    while(b--) result*=a;
+    return result;
+  }
+};
+
+
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">Todos.parse = function(json){ /* ... */ };
+
+Todos.fetchAll = function(id){
+  $.ajax({url: '/api/todos.json'})
+   .done(function(response){
+     this.parse(response);
+   });
+};
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">Todos.parse = function(json){ /* ... */ };
+
+Todos.fetchAll = function(id){
+  $.ajax({url: '/api/todos.json'})
+   .done(response=>this.parse(response));
+}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="t-heading">Classes</h1>
+        <h3>In the prototypical sense...</h3>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">class Thing {
+  constructor(){ console.log('hello world') }
+}
+var thingInstance = new Thing();
+// 'hello world'
+
+thingInstance instanceof Thing;
+// > true
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">extends/super</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">class Thing {
+  doStuff(){ /*...*/ }
+}
+
+class BetterThing extends Thing {
+  doStuff(){
+    super();
+    /* ...and then more stuff */
+  }
+}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2>Private Members</h2>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Before ES6: Closure Pattern</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">function Thing(){
+  this.doStuff = function(){
+    _internalDoStuff();
+  };
+  function _internalDoStuff(){ /*...*/ }
+}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">ES6: Not pretty, but works</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var internalDoStuff = Symbol();
+class Thing {
+  doStuff(){ this[internalDoStuff]() }
+  [internalDoStuff](){ /*...*/ }
+}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Detour: Computed Properties</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var propertyName = "Fr";
+var a = {
+  [propertyName + "ed"]: "Flintstone"
+};
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Detour: Symbol</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var sym1 = Symbol();
+var sym2 = Symbol();
+
+sym1 === sym2;
+//> false
+
+sym === sym;
+//> false
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">One more time...</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var internalDoStuff = Symbol();
+class Thing {
+  doStuff(){ this[internalDoStuff]() }
+  [internalDoStuff](){ /*...*/ }
+}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2>Class Statics</h2>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">class Thing {
+  static doStuff(){ return 'produce stuff' }
+}
+
+Thing.doStuff();
+// > 'produce stuff'
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="t-heading">Modules</h1>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content prez-slide__content--full-width"><img src="/images/price-is-right-winner-gif.gif" class="l-width-100"/></div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Meanwhile in Java...</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">import org.slf4j.Logger;
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Meanwhile in Ruby...</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">require 'yaml'
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">The shit we do...</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">var myStuff = require('./myStuff');
+
+define(['./someOtherStuff'],
+  function(someOtherStuff){/*...*/});
+  
+Ext.require('widget.window');
+
+curl(['yetMoreStuff']).
+  then(function(yetMoreStuff){/*...*/});
+  
+steal('widgets/tabs.js', './style.css',
+  function(Tabs){/*...*/});
+  
+(function(){
+  var script = document.createElement('script');
+  script.src = 'omg-why.js';
+  document.appendChild(script);
+})();
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">ES6: Import/Export</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">// models/Model.js
+export class Model {}
+
+// models/LineItem.js
+var {Model} from './Model';
+class LineItem extends Model {}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">ES6: Import/Export Default</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">// models/Model.js
+export default class Model {}
+
+// models/LineItem.js
+var Model from './Model';
+class LineItem extends Model {}
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="t-heading">Promises /</h1>
+        <h1 class="t-heading">Async Functions</h1>
+        <h3 class="l-margin-t2">Sane asynchonicity</h3>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Promises</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">function fetchGreeting(){
+  new Promise(resolve=>
+    setTimeout(()=>resolve('Hello'), 1000);
+  );
+}
+function greet(greetingPromise){
+  greetingPromise.then(msg=>console.log(msg));
+};
+
+greet(getGreetingPromise());
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide>
+      <div class="prez-slide__content">
+        <h2 class="l-margin-b4">Async Functions</h2>
+        <div class="prez-slide__code prez-slide__code--big">
+          <ace-element mode="javascript">function fetchGreeting(){
+  new Promise(resolve=>
+    setTimeout(()=>resolve('Hello'), 1000);
+  );
+}
+async function greet(greetingPromise){
+  console.log(await greetingPromise);
+};
+
+greet(getGreetingPromise());
+          </ace-element>
+        </div>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b4 t-heading">And much much more...</h1>
+        <ul>
+          <li>Generators</li>
+          <li>Map/Set WeakMap/WeakSet</li>
+          <li>Template Strings</li>
+          <li>Destructuring</li>
+          <li>Argument Spread</li>
+          <li>let/const</li>
+        </ul>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">Map/Set</h1>
+        <h3>Less typing</h3>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">Template Strings</h1>
+        <h3>Interpolating, Multi-line, Tagging</h3>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">Destructuring</h1>
+        <h3>Less typing</h3>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">Spread</h1>
+        <h3><code>arguments</code> was a mistake</h3>
+      </div>
+    </prez-slide>
+    <prez-slide class="prez-slide--primary">
+      <div class="prez-slide__content">
+        <h1 class="l-margin-b1 t-heading">let / const</h1>
+        <h3>variable hoisting was a mistake</h3>
+      </div>
+    </prez-slide>
+  </template>
+  <script>System.import('elements/prez-app');</script>
+</polymer-element>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=320.1, initial-scale=1, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="default" name="apple-mobile-web-app-status-bar-style">
+    <title>ES6/7</title>
+    <link rel="shortcut icon" href="../favicon.ico?v=1" type="image/x-icon">
+    <link rel="stylesheet" href="index.css" shim-shadowdom>
+    <script src="../bower_components/platform/platform.js"></script>
+    <script src="../node_modules/traceur/bin/traceur-runtime.js"></script>
+    <script src="../node_modules/es6-module-loader/dist/es6-module-loader-sans-promises.js"></script>
+    <script>
+      function __eval(__source, __global, __address, __sourceMap) {
+        try {
+          __source = 'with(__global) { (function() { ' + __source + ' \n }).call(__global); }'
+            + '\n//# sourceURL=' + __address
+            + (__sourceMap ? '\n//# sourceMappingURL=' + __sourceMap : '');
+          eval(__source);
+        }
+        catch(e) {
+          if (e.name == 'SyntaxError')
+            e.message = 'Evaluating ' + __address + '\n\t' + e.message;
+          throw e;
+        }
+      }
+      // Absolute URL parsing, from https://gist.github.com/Yaffle/1088850
+      function parseURI(url) {
+        var m = String(url).replace(/^\s+|\s+$/g, '').match(/^([^:\/?#]+:)?(\/\/(?:[^:@]*(?::[^:@]*)?@)?(([^:\/?#]*)(?::(\d*))?))?([^?#]*)(\?[^#]*)?(\s\S*)?/);
+        // authority = '//' + user + ':' + pass '@' + hostname + ':' port
+        return (m ? {
+          href     : m[0] || '',
+          protocol : m[1] || '',
+          authority: m[2] || '',
+          host     : m[3] || '',
+          hostname : m[4] || '',
+          port     : m[5] || '',
+          pathname : m[6] || '',
+          search   : m[7] || '',
+          hash     : m[8] || ''
+        } : null);
+      }
+      function toAbsoluteURL(base, href) {
+        function removeDotSegments(input) {
+          var output = [];
+          input.replace(/^(\.\.?(\/|$))+/, '')
+            .replace(/\/(\.(\/|$))+/g, '/')
+            .replace(/\/\.\.$/, '/../')
+            .replace(/\/?[^\/]*/g, function (p) {
+              if (p === '/..')
+                output.pop();
+              else
+                output.push(p);
+          });
+          return output.join('').replace(/^\//, input.charAt(0) === '/' ? '/' : '');
+        }
+        
+        href = parseURI(href || '');
+        base = parseURI(base || '');
+        
+        return !href || !base ? null : (href.protocol || base.protocol) +
+          (href.protocol || href.authority ? href.authority : base.authority) +
+          removeDotSegments(href.protocol || href.authority || href.pathname.charAt(0) === '/' ? href.pathname : (href.pathname ? ((base.authority && !base.pathname ? '/' : '') + base.pathname.slice(0, base.pathname.lastIndexOf('/') + 1) + href.pathname) : base.pathname)) +
+          (href.protocol || href.authority || href.pathname ? href.search : (href.search || base.search)) +
+          href.hash;
+      }
+    </script>
+    <script src="../node_modules/systemjs/lib/extension-register.js"></script>
+    <script>
+      // this needs to be added to apply the extension
+      register(System);
+      
+    </script>
+    <link rel="import" href="../bower_components/polymer/polymer.html">
+    <link rel="import" href="elements/prez-app.html"/>
+  </head>
+  <body>
+    <prez-app></prez-app>
+    <!-- Dev-->
+    <!-- ----->
+    <!-- Livereload-->
+    <script>
+      document.write("<script src='http://" + (location.host || 'localhost').split(':')[0] + ":35729/livereload.js?snipver=1'></" + "script>");
+      
+    </script>
+    <!-- Production-->
+    <!-- ------------>
+  </body>
+</html>

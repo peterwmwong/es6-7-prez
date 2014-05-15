@@ -1,0 +1,14 @@
+:host {
+  display: block; }
+
+prez-slide {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  display: none; }
+  prez-slide.s-active {
+    display: block; }
+
+/*# sourceMappingURL=prez-app.css.map */
