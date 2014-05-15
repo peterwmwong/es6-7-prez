@@ -36,7 +36,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             (arg1, arg2)=>{ /*...*/ }
             (arg1, arg2)=> returnValue;
@@ -46,7 +46,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             [1,2,3].map(function(num){return num*2});
 
@@ -58,7 +58,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var operations = {
               identity: o=>o,
@@ -74,7 +74,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             Todos.parse = function(json){ /* ... */ };
 
@@ -89,7 +89,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             Todos.parse = function(json){ /* ... */ };
 
@@ -107,7 +107,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             class Thing {
               constructor(){ console.log('hello world') }
@@ -123,7 +123,7 @@
     .prez-slide__content
       h2.l-margin-b4 extends/super
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             class Thing {
               doStuff(){ /*...*/ }
@@ -145,7 +145,7 @@
     .prez-slide__content
       h2.l-margin-b4 Before ES6: Closure Pattern
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             function Thing(){
               this.doStuff = function(){
@@ -159,7 +159,7 @@
     .prez-slide__content
       h2.l-margin-b4 ES6: Not pretty, but works
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var internalDoStuff = Symbol();
             class Thing {
@@ -172,7 +172,7 @@
     .prez-slide__content
       h2.l-margin-b4 Detour: Computed Properties
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var propertyName = "Fr";
             var a = {
@@ -184,7 +184,7 @@
     .prez-slide__content
       h2.l-margin-b4 Detour: Symbol
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var sym1 = Symbol();
             var sym2 = Symbol();
@@ -200,7 +200,7 @@
     .prez-slide__content
       h2.l-margin-b4 One more time...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var internalDoStuff = Symbol();
             class Thing {
@@ -217,7 +217,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             class Thing {
               static doStuff(){ return 'produce stuff' }
@@ -240,7 +240,7 @@
     .prez-slide__content
       h2.l-margin-b4 Meanwhile in Java...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             import org.slf4j.Logger;
           :verbatim
@@ -250,7 +250,7 @@
     .prez-slide__content
       h2.l-margin-b4 Meanwhile in Ruby...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             require 'yaml'
           :verbatim
@@ -260,7 +260,7 @@
     .prez-slide__content
       h2.l-margin-b4 The shit we do...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             var myStuff = require('./myStuff');
 
@@ -287,7 +287,7 @@
     .prez-slide__content
       h2.l-margin-b4 ES6: Import/Export
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             // models/Model.js
             export class Model {}
@@ -301,7 +301,7 @@
     .prez-slide__content
       h2.l-margin-b4 ES6: Import/Export Default
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             // models/Model.js
             export default class Model {}
@@ -323,7 +323,7 @@
     .prez-slide__content
       h2.l-margin-b4 Promises
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             function fetchGreeting(){
               new Promise(resolve=>
@@ -341,7 +341,7 @@
     .prez-slide__content
       h2.l-margin-b4 Async Functions
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript")
+        ace-element(mode="javascript" readonly)
           :verbatim
             function fetchGreeting(){
               new Promise(resolve=>
@@ -370,7 +370,7 @@
   //- prez-slide
   //-   .prez-slide__content
   //-     .prez-slide__code.prez-slide__code--bigger
-  //-       ace-element(mode="javascript")
+  //-       ace-element(mode="javascript" readonly)
   //-         :verbatim
   //-           var createNumberGenerator = function*(){
   //-             yield 1;
