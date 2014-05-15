@@ -42,7 +42,7 @@
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code">
-          <ace-element mode="javascript">(arg1, arg2)=>{ /*...*/ }
+          <ace-element mode="javascript" readonly="readonly">(arg1, arg2)=>{ /*...*/ }
 (arg1, arg2)=> returnValue;
 arg=> returnValue;
           </ace-element>
@@ -52,7 +52,7 @@ arg=> returnValue;
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code">
-          <ace-element mode="javascript">[1,2,3].map(function(num){return num*2});
+          <ace-element mode="javascript" readonly="readonly">[1,2,3].map(function(num){return num*2});
 
 [1,2,3].map(num=>num*2);
 
@@ -64,7 +64,7 @@ arg=> returnValue;
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var operations = {
+          <ace-element mode="javascript" readonly="readonly">var operations = {
   identity: o=>o,
   add: (a,b)=>a+b,
   exp: (a,b)=>{
@@ -82,7 +82,7 @@ arg=> returnValue;
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">Todos.parse = function(json){ /* ... */ };
+          <ace-element mode="javascript" readonly="readonly">Todos.parse = function(json){ /* ... */ };
 
 Todos.fetchAll = function(id){
   $.ajax({url: '/api/todos.json'})
@@ -97,7 +97,7 @@ Todos.fetchAll = function(id){
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">Todos.parse = function(json){ /* ... */ };
+          <ace-element mode="javascript" readonly="readonly">Todos.parse = function(json){ /* ... */ };
 
 Todos.fetchAll = function(id){
   $.ajax({url: '/api/todos.json'})
@@ -116,7 +116,7 @@ Todos.fetchAll = function(id){
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">class Thing {
+          <ace-element mode="javascript" readonly="readonly">class Thing {
   constructor(){ console.log('hello world') }
 }
 var thingInstance = new Thing();
@@ -132,7 +132,7 @@ thingInstance instanceof Thing;
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">extends/super</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">class Thing {
+          <ace-element mode="javascript" readonly="readonly">class Thing {
   doStuff(){ /*...*/ }
 }
 
@@ -155,7 +155,7 @@ class BetterThing extends Thing {
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Before ES6: Closure Pattern</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">function Thing(){
+          <ace-element mode="javascript" readonly="readonly">function Thing(){
   this.doStuff = function(){
     _internalDoStuff();
   };
@@ -169,7 +169,7 @@ class BetterThing extends Thing {
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">ES6: Not pretty, but works</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var internalDoStuff = Symbol();
+          <ace-element mode="javascript" readonly="readonly">var internalDoStuff = Symbol();
 class Thing {
   doStuff(){ this[internalDoStuff]() }
   [internalDoStuff](){ /*...*/ }
@@ -182,7 +182,7 @@ class Thing {
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Detour: Computed Properties</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var propertyName = "Fr";
+          <ace-element mode="javascript" readonly="readonly">var propertyName = "Fr";
 var a = {
   [propertyName + "ed"]: "Flintstone"
 };
@@ -194,7 +194,7 @@ var a = {
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Detour: Symbol</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var sym1 = Symbol();
+          <ace-element mode="javascript" readonly="readonly">var sym1 = Symbol();
 var sym2 = Symbol();
 
 sym1 === sym2;
@@ -210,7 +210,7 @@ sym === sym;
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">One more time...</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var internalDoStuff = Symbol();
+          <ace-element mode="javascript" readonly="readonly">var internalDoStuff = Symbol();
 class Thing {
   doStuff(){ this[internalDoStuff]() }
   [internalDoStuff](){ /*...*/ }
@@ -227,7 +227,7 @@ class Thing {
     <prez-slide>
       <div class="prez-slide__content">
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">class Thing {
+          <ace-element mode="javascript" readonly="readonly">class Thing {
   static doStuff(){ return 'produce stuff' }
 }
 
@@ -249,7 +249,7 @@ Thing.doStuff();
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Meanwhile in Java...</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">import org.slf4j.Logger;
+          <ace-element mode="javascript" readonly="readonly">import org.slf4j.Logger;
           </ace-element>
         </div>
       </div>
@@ -258,7 +258,7 @@ Thing.doStuff();
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Meanwhile in Ruby...</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">require 'yaml'
+          <ace-element mode="javascript" readonly="readonly">require 'yaml'
           </ace-element>
         </div>
       </div>
@@ -267,7 +267,7 @@ Thing.doStuff();
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">The shit we do...</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">var myStuff = require('./myStuff');
+          <ace-element mode="javascript" readonly="readonly">var myStuff = require('./myStuff');
 
 define(['./someOtherStuff'],
   function(someOtherStuff){/*...*/});
@@ -293,7 +293,7 @@ steal('widgets/tabs.js', './style.css',
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">ES6: Import/Export</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">// models/Model.js
+          <ace-element mode="javascript" readonly="readonly">// models/Model.js
 export class Model {}
 
 // models/LineItem.js
@@ -307,7 +307,7 @@ class LineItem extends Model {}
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">ES6: Import/Export Default</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">// models/Model.js
+          <ace-element mode="javascript" readonly="readonly">// models/Model.js
 export default class Model {}
 
 // models/LineItem.js
@@ -328,7 +328,7 @@ class LineItem extends Model {}
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Promises</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">function fetchGreeting(){
+          <ace-element mode="javascript" readonly="readonly">function fetchGreeting(){
   new Promise(resolve=>
     setTimeout(()=>resolve('Hello'), 1000);
   );
@@ -346,7 +346,7 @@ greet(getGreetingPromise());
       <div class="prez-slide__content">
         <h2 class="l-margin-b4">Async Functions</h2>
         <div class="prez-slide__code prez-slide__code--big">
-          <ace-element mode="javascript">function fetchGreeting(){
+          <ace-element mode="javascript" readonly="readonly">function fetchGreeting(){
   new Promise(resolve=>
     setTimeout(()=>resolve('Hello'), 1000);
   );
