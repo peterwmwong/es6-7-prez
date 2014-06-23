@@ -1,3 +1,2 @@
-- Download fonts
 - ace-element
   -  initializeEditor(){ this.value = this.textContent.trim(); }
