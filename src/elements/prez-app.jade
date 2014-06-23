@@ -10,34 +10,27 @@
 
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4 Why now?
+      h2.l-margin-b4 Why is it important?
       ul
-        li Gaining attention
-        li Stablizing spec
-        li Implementations out in the wild
-        li Already being used <i>(Angular 2.0 and Ember 1.6)</i>
+        li Ton of new features
+        li Impactful features (write, organize, build, analyze)
+        li Fast community adoption (React, Angular, and Ember)
         li.t-bold You can use it now!
-
-  prez-slide
-    .prez-slide__content
-      h2.l-margin-b4 So far so good...
-      ul
-        li Zeitgeist
-        li Doug's Survive the Night
-        li Garçon
-        li.t-bold This presentation
 
   prez-slide.prez-slide--primary
     .prez-slide__content
-      h1.l-margin-b1.t-heading Arrow Functions
+      h1.l-margin-b1.t-heading Arrow Functions and Literal Shorthand
       h3 Less typing
-
 
   prez-slide
     .prez-slide__content
-      .prez-slide__code
-        ace-element(mode="javascript" readonly)
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
           :verbatim
+            // Old
+            function(arg1, arg2){ /*...*/ }
+
+            // New!
             (arg1, arg2)=>{ /*...*/ }
             (arg1, arg2)=> returnValue;
             arg=> returnValue;
@@ -46,7 +39,7 @@
   prez-slide
     .prez-slide__content
       .prez-slide__code
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             [1,2,3].map(function(num){return num*2});
 
@@ -55,48 +48,60 @@
             //> [2,4,6]
           :verbatim
 
-  prez-slide
-    .prez-slide__content
-      .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
-          :verbatim
-            var operations = {
-              identity: o=>o,
-              add: (a,b)=>a+b,
-              exp: (a,b)=>{
-                var result = a;
-                while(b--) result*=a;
-                return result;
-              }
-            };
-
 
   prez-slide
     .prez-slide__content
-      .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+      h2.l-margin-b4 <code>this</code> locked in
+      .prez-slide__code
+        ace-element(mode="javascript")
           :verbatim
-            Todos.parse = function(json){ /* ... */ };
+            this.something = 'hello';
+            $.ajax('blah.json').done(data=>{
+              this.something === 'hello';
+              //> true
+            })
 
-            Todos.fetchAll = function(id){
-              $.ajax({url: '/api/todos.json'})
-               .done(function(response){
-                 this.parse(response);
-               });
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 Object literal shorthand
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            var myObject = {
+              oldWay: function(){ /*...*/ },
+              newWay() { /*...*/ }
             };
           :verbatim
 
+
+  prez-slide.prez-slide--primary
+    .prez-slide__content
+      h1.t-heading Rest/Spread
+      h3 no more <code>arguments</code>
+
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
-            Todos.parse = function(json){ /* ... */ };
+            var doubleAll = (...args)=>args.map(a=>a*2);
 
-            Todos.fetchAll = function(id){
-              $.ajax({url: '/api/todos.json'})
-               .done(response=>this.parse(response));
-            }
+            doubleAll(1,2,3);
+
+            var anArray = [1,2,3];
+            doubleAll(...anArray);
+          :verbatim
+
+  prez-slide
+    .prez-slide__content
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            var doubleAll = (...args)=>args.map(a=>a*2);
+
+            var runFuncWithArgs = (cmd, ...args)=>cmd(...args);
+
+            runFuncWithArgs(doubleAll, 1,2,3);
           :verbatim
 
   prez-slide.prez-slide--primary
@@ -104,13 +109,32 @@
       h1.t-heading Classes
       h3 In the prototypical sense...
 
+
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
+          :verbatim
+            function Thing(){
+              console.log('hello world');
+            }
+            Thing.prototype.doStuff = function(){/*...*/};
+
+            var thingInstance = new Thing();
+            // 'hello world'
+
+            thingInstance instanceof Thing;
+            // > true
+          :verbatim
+
+  prez-slide
+    .prez-slide__content
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
           :verbatim
             class Thing {
               constructor(){ console.log('hello world') }
+              doStuff(){/*...*/}
             }
             var thingInstance = new Thing();
             // 'hello world'
@@ -123,7 +147,7 @@
     .prez-slide__content
       h2.l-margin-b4 extends/super
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             class Thing {
               doStuff(){ /*...*/ }
@@ -145,36 +169,45 @@
     .prez-slide__content
       h2.l-margin-b4 Before ES6: Closure Pattern
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             function Thing(){
+              function _internalDoStuff(){ /*...*/ }
+
               this.doStuff = function(){
                 _internalDoStuff();
               };
-              function _internalDoStuff(){ /*...*/ }
             }
           :verbatim
 
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4 ES6: Not pretty, but works
+      h2.l-margin-b4 ES6... not awesome
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             var internalDoStuff = Symbol();
+
             class Thing {
-              doStuff(){ this[internalDoStuff]() }
               [internalDoStuff](){ /*...*/ }
+
+              doStuff(){ this[internalDoStuff]() }
             }
           :verbatim
 
   prez-slide
     .prez-slide__content
-      h2.l-margin-b4 Detour: Computed Properties
+      h2.l-margin-b4 Detour: Computed Property Keys
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             var propertyName = "Fr";
+
+            // Old
+            var oldWay = {};
+            oldWay[properyName + "ed"] = "Flinstone";
+
+            // New!
             var a = {
               [propertyName + "ed"]: "Flintstone"
             };
@@ -184,15 +217,12 @@
     .prez-slide__content
       h2.l-margin-b4 Detour: Symbol
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             var sym1 = Symbol();
             var sym2 = Symbol();
 
             sym1 === sym2;
-            //> false
-
-            sym === sym;
             //> false
           :verbatim
 
@@ -200,12 +230,14 @@
     .prez-slide__content
       h2.l-margin-b4 One more time...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             var internalDoStuff = Symbol();
+
             class Thing {
-              doStuff(){ this[internalDoStuff]() }
               [internalDoStuff](){ /*...*/ }
+
+              doStuff(){ this[internalDoStuff]() }
             }
           :verbatim
 
@@ -213,11 +245,10 @@
     .prez-slide__content
       h2 Class Statics
 
-
   prez-slide
     .prez-slide__content
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             class Thing {
               static doStuff(){ return 'produce stuff' }
@@ -240,7 +271,7 @@
     .prez-slide__content
       h2.l-margin-b4 Meanwhile in Java...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             import org.slf4j.Logger;
           :verbatim
@@ -250,17 +281,25 @@
     .prez-slide__content
       h2.l-margin-b4 Meanwhile in Ruby...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             require 'yaml'
           :verbatim
 
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 In JS... HTML...
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            &lt;script src='myStuff.js'/>
+          :verbatim
 
   prez-slide
     .prez-slide__content
       h2.l-margin-b4 The shit we do...
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             var myStuff = require('./myStuff');
 
@@ -287,72 +326,134 @@
     .prez-slide__content
       h2.l-margin-b4 ES6: Import/Export
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             // models/Model.js
             export class Model {}
 
             // models/LineItem.js
-            var {Model} from './Model';
+            import {Model} from './Model';
             class LineItem extends Model {}
+          :verbatim
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 ES6: Import/Export Multiple
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            // models/Model.js
+            export class Model {}
+            export class ModelHelper {}
+
+            // models/LineItem.js
+            import {Model, ModelHelper} from './Model';
           :verbatim
 
   prez-slide
     .prez-slide__content
       h2.l-margin-b4 ES6: Import/Export Default
       .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+        ace-element(mode="javascript")
           :verbatim
             // models/Model.js
             export default class Model {}
 
             // models/LineItem.js
-            var Model from './Model';
+            import Model from './Model';
             class LineItem extends Model {}
           :verbatim
 
-
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 Module Loader API
+      ul
+        li Change how modules are loaded
+          ul.l-margin-t2
+            li dev/test/production pathing
+            li load non-JS modules (CSS, text files, CoffeeScript, TypeScript, etc.)
 
   prez-slide.prez-slide--primary
     .prez-slide__content
       h1.t-heading Promises /
       h1.t-heading Async Functions
-      h3.l-margin-t2 Sane asynchonicity
+      h3.l-margin-t2 Sane asynchronicity
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 Callback Hell
+      .prez-slide__code.prez-slide__code--big
+        ace-element(mode="javascript")
+          :verbatim
+            fs.readdir(source, function(err, files) {
+              if (err) console.log('Error finding files: ' + err)
+              else
+                files.forEach(function(filename, fileIndex) {
+                  gm(source + filename).size(function(err, values) {
+                    if (err) console.log('Error identifying file size: ' + err)
+                    else {
+                      console.log(filename + ' : ' + values)
+                      aspect = (values.width / values.height)
+                      widths.forEach(function(width, widthIndex) {
+          :verbatim
 
   prez-slide
     .prez-slide__content
       h2.l-margin-b4 Promises
-      .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+      .prez-slide__code.prez-slide__code--bigger
+        ace-element(mode="javascript")
           :verbatim
-            function fetchGreeting(){
-              new Promise(resolve=>
-                setTimeout(()=>resolve('Hello'), 1000);
-              );
+            function app(){
+              // readFile() returns a promise
+              function readEvalExecuteFile(file){
+                return readFile(file)
+                        .then(contents=>evaluate(contents))
+              }
+              readEvalExecuteFile('blah.js')
+                .then(result=>console.log("Result:", result))
+                .catch(err=>console.log("Couldn't read/eval/execute file", err));
             }
-            function greet(greetingPromise){
-              greetingPromise.then(msg=>console.log(msg));
-            };
-
-            greet(getGreetingPromise());
           :verbatim
 
   prez-slide
     .prez-slide__content
       h2.l-margin-b4 Async Functions
-      .prez-slide__code.prez-slide__code--big
-        ace-element(mode="javascript" readonly)
+      .prez-slide__code.prez-slide__code--bigger
+        ace-element(mode="javascript")
           :verbatim
-            function fetchGreeting(){
-              new Promise(resolve=>
-                setTimeout(()=>resolve('Hello'), 1000);
-              );
-            }
-            async function greet(greetingPromise){
-              console.log(await greetingPromise);
-            };
+            async function app(){
+              function async readEvalExecuteFile(file){
+                var contents = await readFile(file);
+                return evaluate(contents);
+              }
 
-            greet(getGreetingPromise());
+              try {
+                console.log("Result:", await readEvalExecuteFile('blah.js'));
+              } catch(err) {
+                console.log("Couldn't read/eval/execute file", err);
+              }
+            }
+          :verbatim
+
+
+  prez-slide
+    .prez-slide__content
+      h2.l-margin-b4 If everything were synchronous...
+      .prez-slide__code.prez-slide__code--bigger
+        ace-element(mode="javascript")
+          :verbatim
+            function app(){
+              function readEvalExecuteFile(file){
+                var contents = readFile(file);
+                return evaluate(contents);
+              }
+
+              try {
+                console.log("Result:", readEvalExecuteFile('blah.js'));
+              } catch(err) {
+                console.log("Couldn't read/eval/execute file", err);
+              }
+            }
           :verbatim
 
 
@@ -360,17 +461,33 @@
     .prez-slide__content
       h1.l-margin-b4.t-heading And much much more...
       ul
+        li Destructuring
+        li Array Comprehensions
         li Generators
         li Map/Set WeakMap/WeakSet
         li Template Strings
-        li Destructuring
-        li Argument Spread
         li let/const
+        li Typed Objects
+
+  prez-slide.prez-slide--primary
+    .prez-slide__content
+      h1.l-margin-b4.t-heading Use it today
+      ul
+        li
+          | Transpilers/Polyfills: &nbsp;
+          a(href='https://github.com/addyosmani/es6-tools')
+            | addyosmani/es6-tools
+        li I recommend&nbsp;
+          ul.l-margin-t2
+            li
+              a(href='https://github.com/google/traceur-compiler' target='_blank') traceur
+            li
+              a(href='https://github.com/ModuleLoader/es6-module-loader' target='_blank') es6-module-loader
 
   //- prez-slide
   //-   .prez-slide__content
   //-     .prez-slide__code.prez-slide__code--bigger
-  //-       ace-element(mode="javascript" readonly)
+  //-       ace-element(mode="javascript")
   //-         :verbatim
   //-           var createNumberGenerator = function*(){
   //-             yield 1;
@@ -386,27 +503,27 @@
   //-           // > {value: undefined, done: true}
   //-         :verbatim
 
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-margin-b1.t-heading Map/Set
-      h3 Less typing
-
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-margin-b1.t-heading Template Strings
-      h3 Interpolating, Multi-line, Tagging
-
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-margin-b1.t-heading Destructuring
-      h3 Less typing
-
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-margin-b1.t-heading Spread
-      h3 <code>arguments</code> was a mistake
-
-  prez-slide.prez-slide--primary
-    .prez-slide__content
-      h1.l-margin-b1.t-heading let / const
-      h3 variable hoisting was a mistake
+  //- prez-slide.prez-slide--primary
+  //-   .prez-slide__content
+  //-     h1.l-margin-b1.t-heading Map/Set
+  //-     h3 Less typing
+  //-
+  //- prez-slide.prez-slide--primary
+  //-   .prez-slide__content
+  //-     h1.l-margin-b1.t-heading Template Strings
+  //-     h3 Interpolating, Multi-line, Tagging
+  //-
+  //- prez-slide.prez-slide--primary
+  //-   .prez-slide__content
+  //-     h1.l-margin-b1.t-heading Destructuring
+  //-     h3 Less typing
+  //-
+  //- prez-slide.prez-slide--primary
+  //-   .prez-slide__content
+  //-     h1.l-margin-b1.t-heading Spread
+  //-     h3 <code>arguments</code> was a mistake
+  //-
+  //- prez-slide.prez-slide--primary
+  //-   .prez-slide__content
+  //-     h1.l-margin-b1.t-heading let / const
+  //-     h3 variable hoisting was a mistake

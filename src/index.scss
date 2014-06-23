@@ -340,9 +340,10 @@ html /deep/ {
   a:hover,
   a:visited,
   a:active {
-    color: $brand-primary-light;
+    // color: $brand-primary-light;
+    color: white;
     cursor: pointer;
-    text-decoration: none;
+    text-decoration: underline;
   }
 
   a:hover  { color: darken($brand-primary-light, 10%); }
