@@ -545,9 +545,9 @@ html /deep/ a,
 html /deep/ a:hover,
 html /deep/ a:visited,
 html /deep/ a:active {
-  color: #2473c2;
+  color: white;
   cursor: pointer;
-  text-decoration: none; }
+  text-decoration: underline; }
 html /deep/ a:hover {
   color: #1c5997; }
 html /deep/ input,

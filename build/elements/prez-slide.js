@@ -12,5 +12,3 @@ System.register([], function($__0) {
     }
   };
 });
-
-//# sourceMappingURL=prez-slide.js.map

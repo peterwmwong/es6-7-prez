@@ -313,7 +313,7 @@ content::content .prez-slide__code {
   content::content .prez-slide__code--big {
     height: 550px; }
   content::content .prez-slide__code--bigger {
-    height: 715px; }
+    height: 830px; }
   content::content .prez-slide__code ace-element {
     left: -14px; }
   content::content .prez-slide__code ace-element /deep/ .ace_editor {

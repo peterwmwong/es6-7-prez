@@ -47,5 +47,3 @@ System.register([], function($__0) {
     }
   };
 });
-
-//# sourceMappingURL=prez-app.js.map
